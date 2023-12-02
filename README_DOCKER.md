@@ -58,6 +58,7 @@ because there's lots of options we want to pass.
 Let's run this interactively to start, so we can control the server.
 This assumes you want to use your public IP for the relevant IP Address configurations.
 
+Linux
 ```bash
 mkdir -p ~/fts_data
 docker run -it \
@@ -68,6 +69,7 @@ docker run -it \
 	--name fts-node-1 \
 	fts:local
 ```
+Windows11
 ```powershell
 mkdir $home/fts_data
 docker run -it `
