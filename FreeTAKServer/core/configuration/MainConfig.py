@@ -24,7 +24,6 @@ FTS_VERSION = f"{FTS_NAME}-2.1 RC1"
 API_VERSION = "3"
 ROOT_PATH = Path("/")
 ROOTPATH = str(ROOT_PATH)
-# MAIN_PATH = Path(sysconfig.get_path('purelib'))
 
 # Platform specific paths.
 # The linux paths differ from those selected previously.
@@ -32,6 +31,7 @@ ROOTPATH = str(ROOT_PATH)
 # can be used for finer control.
 # USERPATH = rf"{ROOTPATH}usr/local/lib/"
 # PERSISTENCE_PATH = r'/opt/fts'
+# MAIN_PATH = Path(sysconfig.get_path('purelib'))
 MAIN_PATH = Path(__file__).parent.parent.parent
 USER_PATH = platformdirs.user_data_path(FTS_NAME)
 PERSISTENCE_PATH = platformdirs.site_data_path(FTS_NAME)
