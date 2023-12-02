@@ -73,7 +73,7 @@ Windows11
 ```powershell
 mkdir $home/fts_data
 $fts_data = wsl -d podman-machine-default -- wslpath -a "'$home\fts_data'"
-docker run -it `
+podman run -it `
 	-e FTS_DP_ADDRESS=$(curl ifconfig.me).Content `
 	--mount type=bind,src=fts_data,target=$fts_data `
 	-p 8080:8080 -p 8087:8087 -p 8443:8443 `
