@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "FreeTAKServer"
-version = "2.2.1"
+version = "2.2.2"
 description = "An open source server for the TAK family of applications."
 license = "EPL-2.0"
 authors = ["FreeTAKTeam <FreeTakTeam@gmail.com>"]
@@ -73,8 +73,8 @@ tabulate="0.8.7"
 Werkzeug="3.0.1"
 WTForms="2.3.3"
 pyOpenSSL="22.0.0"
-qrcode="7.3.1"
-pillow="9.3.0"
+qrcode="8.2"
+pillow="9.3.0" # 11.2.1
 asyncio="3.4.3"
 xmltodict="*"
 pyzmq="*"
@@ -88,7 +88,7 @@ pytest = {version = "7.2.0"}
 pytest-asyncio = {version = "0.20.1"}
 
 [tool.poetry.group.ui.dependencies]
-FreeTAKServer_UI = {version = "2.2.1"}
+FreeTAKServer_UI = {version = "2.2.2"}
 
 [tool.poetry.scripts]
 fts_server = "FreeTAKServer.controllers.services.FTS:main"
