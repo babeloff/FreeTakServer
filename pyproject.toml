@@ -36,13 +36,13 @@ include = [
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
 bitarray="*"
-click=">=8.1.7"
-colorama="0.4.6"
-cryptography="36.0.2"
-bcrypt="3.1.7"
+click=">=8.1.7,<9.0"
+colorama=">=0.4.6,<0.5"
+cryptography=">=36.0.2,<50.0"
+bcrypt=">=3.1.7,<5.0"
 defusedxml="0.7.1"
-dnspython="2.2.1"
-eventlet="0.36.1"
+dnspython=">=2.2.1,<3.0"
+eventlet=">=0.36.1,<0.40"
 Flask="3.0.2"
 Flask-Cors="4.0.0"
 Flask-HTTPAuth="4.8.0"
@@ -53,7 +53,7 @@ geographiclib="1.52"
 geopy="2.2.0"
 greenlet="3.0.3"
 itsdangerous=">=2.1.2"
-testresources="2.0.1"
+testresources=">=2.0.1,<3.0"
 Jinja2="3.1.3"
 lxml="*"
 MarkupSafe="2.1.5"
@@ -64,21 +64,21 @@ psutil="5.9.4"
 pykml="0.2.0"
 python-engineio="4.9.0"
 python-socketio="5.11.1"
-PyYAML="6.0.1"
-"ruamel.yaml"="0.17.21"
-"ruamel.yaml.clib"="0.2.8"
+PyYAML=">=6.0.1,<7.0"
+"ruamel.yaml"=">=0.17.21,<0.19"
+"ruamel.yaml.clib"=">=0.2.7,<0.3"
 six="1.16.0"
 SQLAlchemy="2.0.29"
 tabulate="0.8.7"
 Werkzeug="3.0.1"
 WTForms="2.3.3"
 pyOpenSSL="22.0.0"
-qrcode="8.2"
-pillow="9.3.0" # 11.2.1
-asyncio="3.4.3"
+qrcode=">=8.2,<9.0"
+pillow="==9.3.0" # 11.2.1
+asyncio=">=3.4.3,<4.0"
 xmltodict="*"
 pyzmq="*"
-digitalpy=">=0.3.13.7"
+digitalpy=">=0.3.13.7,<0.4"
 opentelemetry-sdk="*"
 PyJWT="*"
 
@@ -92,3 +92,10 @@ FreeTAKServer_UI = {version = "2.2.2"}
 
 [tool.poetry.scripts]
 fts_server = "FreeTAKServer.controllers.services.FTS:main"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::FutureWarning"
+]
+
+
