@@ -8,7 +8,17 @@ on:
 jobs:
   rebuild:
     runs-on: ubuntu-latest
+    if: ${{ secrets.DO_API_TOKEN != '' && secrets.DO_PUB_DROPLET_ID != '' && secrets.DO_PUB_SNAPSHOT_ID != '' }}
     steps:
+      - name: Check for required secrets
+        run: |
+          if [ -z "${{ secrets.DO_API_TOKEN }}" ] || [ -z "${{ secrets.DO_PUB_DROPLET_ID }}" ] || [ -z "${{ secrets.DO_PUB_SNAPSHOT_ID }}" ]; then
+            echo "Required secrets are missing. Please configure:"
+            echo "- DO_API_TOKEN: DigitalOcean API token: DigitalOcean Control Panel -> API -> Tokens/Keys: Generate a Personal Access Token with read/write permission"
+            echo "- DO_PUB_DROPLET_ID: Droplet ID to restore: DigitalOcean dashboard -> find pub server droplet ID"
+            echo "- DO_PUB_SNAPSHOT_ID: Snapshot ID to restore from: DigitalOcean dashboard -> find the snapshot ID to restore"
+            exit 1
+          fi
 
       - name: Set up doctl
         uses: digitalocean/action-doctl@v2

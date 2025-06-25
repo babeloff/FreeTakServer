@@ -110,4 +110,6 @@ pip = ">=25.0,<26.0"
 [tool.pixi.tasks.install]
 cmd = ["pip", "install", "."]
 
+[tool.pixi.tasks.show-managed-ignored]
+cmd = ["git", "ls-files", "-c", "|", "git", "check-ignore", "-v", "--stdin", "--no-index"]
 
