@@ -15,19 +15,19 @@ jobs:
     name: Docker Build
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the container image
-      # can this be converted to podman at some point to be more foss?
-      run: |
-        SANITIZED_TAG="$(echo ${IMAGE_TAG//[^[:alnum:]]/_} | tr '[:upper:]' '[:lower:]' )"
-        docker build . --file Dockerfile --tag $REGISTRY_URL:$SANITIZED_TAG --tag $REGISTRY_URL:$IMAGE_SHA --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Build the container image
+        # can this be converted to podman at some point to be more foss?
+        run: |
+          SANITIZED_TAG="$(echo ${IMAGE_TAG//[^[:alnum:]]/_} | tr '[:upper:]' '[:lower:]' )"
+          docker build . --file Dockerfile --tag $REGISTRY_URL:$SANITIZED_TAG --tag $REGISTRY_URL:$IMAGE_SHA --label "runnumber=${GITHUB_RUN_ID}"
 
-    - name: Log in to registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login $OC_REGISTRY -u $ --password-stdin
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login $OC_REGISTRY -u $ --password-stdin
 
-    - name: Push image to registry
-      run: |
-        SANITIZED_TAG="$(echo ${IMAGE_TAG//[^[:alnum:]]/_} | tr '[:upper:]' '[:lower:]' )"
-        docker push $REGISTRY_URL:$SANITIZED_TAG
-        docker push $REGISTRY_URL:$IMAGE_SHA
-
+      - name: Push image to registry
+        run: |
+          SANITIZED_TAG="$(echo ${IMAGE_TAG//[^[:alnum:]]/_} | tr '[:upper:]' '[:lower:]' )"
+          docker push $REGISTRY_URL:$SANITIZED_TAG
+          docker push $REGISTRY_URL:$IMAGE_SHA
