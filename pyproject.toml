@@ -22,15 +22,13 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 
-packages = [
-    {include = "FreeTAKServer"}
-]
+packages = [{ include = "FreeTAKServer" }]
 include = [
     "README.md",
-    "FreeTAKServer/**/*.json", 
-    "FreeTAKServer/**/*.py", 
-    "FreeTAKServer/**/*.ini", 
-    "FreeTAKServer/**/*.conf"
+    "FreeTAKServer/**/*.json",
+    "FreeTAKServer/**/*.py",
+    "FreeTAKServer/**/*.ini",
+    "FreeTAKServer/**/*.conf",
 ]
 
 [tool.poetry.dependencies]
@@ -84,19 +82,31 @@ WTForms = ">=2.3.3,<2.4"
 xmltodict = ">=0.14.0,<0.15"
 
 [tool.poetry.group.dev.dependencies]
-pytak = {version = "5.4.1"}
-pytest = {version = "7.2.0"}
-pytest-asyncio = {version = "0.20.1"}
+pytak = { version = "5.4.1" }
+pytest = { version = ">=7.0.0" }
+pytest-asyncio = { version = "0.20.1" }
+pytest-pep8 = { version = ">=1.0.0" }
+pytest-cov = { version = ">=4.0.0" }
 
 [tool.poetry.group.ui.dependencies]
-FreeTAKServer_UI = {version = "2.2.2"}
+FreeTAKServer_UI = { version = "2.2.2" }
 
 [tool.poetry.scripts]
 fts_server = "FreeTAKServer.controllers.services.FTS:main"
 
 [tool.pytest.ini_options]
-filterwarnings = [
-    "ignore::FutureWarning"
+addopts = "--ignore=FreeTAKServer/components/extended/mission/swagger_server/test"
+filterwarnings = ["ignore::FutureWarning"]
+
+[tool.flake8]
+exclude = [
+    "./FreeTAKServer/components/extended/excheck/controllers/ExCheckCSVController.py",
+    "./FreeTAKServer/components/extended/excheck/controllers/ex_check_api_controller.py",
+    "./FreeTAKServer/components/extended/master_parrot/*",
+    "./FreeTAKServer/components/extended/mission/swagger_server/*",
+    "./FreeTAKServer/components/extended/report/*",
+    "./FreeTAKServer/components/extended/track_manager/*",
+    "./",
 ]
 
 [tool.pixi.workspace]
@@ -111,5 +121,14 @@ pip = ">=25.0,<26.0"
 cmd = ["pip", "install", "."]
 
 [tool.pixi.tasks.show-managed-ignored]
-cmd = ["git", "ls-files", "-c", "|", "git", "check-ignore", "-v", "--stdin", "--no-index"]
-
+cmd = [
+    "git",
+    "ls-files",
+    "-c",
+    "|",
+    "git",
+    "check-ignore",
+    "-v",
+    "--stdin",
+    "--no-index",
+]
